@@ -1,0 +1,240 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-white font-sans text-zinc-900 antialiased dark:bg-[#0C0D10] dark:text-zinc-100;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-heading {
+    @apply font-display tracking-tight;
+  }
+
+  /* Visible, consistent keyboard focus indicator for every interactive element */
+  :focus-visible {
+    outline: 2px solid theme('colors.primary.500');
+    outline-offset: 2px;
+  }
+
+  /* Remove number input spinners */
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Reusable component classes                                          */
+/* ------------------------------------------------------------------ */
+@layer components {
+  .btn {
+    @apply inline-flex min-h-[44px] select-none items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-45;
+  }
+  .btn-lg {
+    @apply min-h-[52px] px-6 text-base;
+  }
+  .btn-icon {
+    @apply h-10 w-10 px-0 py-0;
+  }
+  .btn-primary {
+    @apply bg-primary-500 text-white shadow-sm hover:bg-primary-600 dark:bg-primary-500 dark:hover:bg-primary-400;
+  }
+  .btn-secondary {
+    @apply border border-zinc-200/90 bg-white text-zinc-700 shadow-soft hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800;
+  }
+  .btn-ghost {
+    @apply text-zinc-600 hover:bg-zinc-100/80 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/70 dark:hover:text-zinc-100;
+  }
+  .btn-danger {
+    @apply bg-red-600 text-white shadow-sm hover:bg-red-700;
+  }
+
+  .input {
+    @apply block min-h-[44px] w-full rounded-xl border border-zinc-200/90 bg-white px-3.5 py-2.5 text-sm text-zinc-900 shadow-soft transition placeholder:text-zinc-400 focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-500/15 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder:text-zinc-500;
+  }
+  .input-error {
+    @apply border-red-500 focus:border-red-500 focus:ring-red-500/15;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400;
+  }
+
+  .card {
+    @apply rounded-2xl border border-zinc-200/70 bg-white shadow-soft dark:border-zinc-800/80 dark:bg-[#13151A];
+  }
+
+  /* Bringova floating row style */
+  .row-card {
+    @apply rounded-xl border border-zinc-200/60 bg-white shadow-soft transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-[1px] hover:border-zinc-300/80 hover:shadow-elevated dark:border-zinc-800/80 dark:bg-[#13151A] dark:hover:border-zinc-700;
+  }
+
+  .kbd {
+    @apply inline-flex min-w-[1.5rem] items-center justify-center rounded-md border border-zinc-200 bg-zinc-100 px-1.5 py-0.5 font-mono text-[11px] font-semibold text-zinc-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400;
+  }
+  .kbd-inverse {
+    @apply border-white/25 bg-white/15 text-white;
+  }
+
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-primary-500 focus:px-4 focus:py-2 focus:text-white;
+  }
+}
+
+/* Thin, unobtrusive scrollbars */
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.zinc.300') transparent;
+  }
+  .dark .scrollbar-thin {
+    scrollbar-color: theme('colors.zinc.700') transparent;
+  }
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Vue <Transition> / <TransitionGroup> classes                        */
+/* ------------------------------------------------------------------ */
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.modal-enter-active .modal-panel,
+.modal-leave-active .modal-panel {
+  transition: transform 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+.modal-enter-from .modal-panel,
+.modal-leave-to .modal-panel {
+  transform: translateY(20px) scale(0.97);
+}
+
+.cart-item-enter-active,
+.cart-item-leave-active {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cart-item-enter-from {
+  opacity: 0;
+  transform: translateX(20px);
+}
+.cart-item-leave-to {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+.cart-item-leave-active {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.cart-item-move {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast-enter-active,
+.toast-leave-active {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.toast-enter-from {
+  opacity: 0;
+  transform: translateX(100%);
+}
+.toast-leave-to {
+  opacity: 0;
+  transform: scale(0.92);
+}
+.toast-leave-active {
+  position: absolute;
+  right: 0;
+  width: 100%;
+}
+.toast-move {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.grid-item-enter-active {
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.grid-item-enter-from {
+  opacity: 0;
+  transform: translateY(8px) scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Printing: only the receipt is printed                               */
+/* ------------------------------------------------------------------ */
+@media print {
+  @page {
+    margin: 8mm;
+  }
+  #app,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+  }
+  .modal-root {
+    position: static !important;
+    display: block !important;
+    padding: 0 !important;
+  }
+  .modal-panel {
+    max-height: none !important;
+    max-width: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: white !important;
+  }
+  .modal-body {
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+  .receipt {
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 auto !important;
+    max-width: 80mm !important;
+  }
+}

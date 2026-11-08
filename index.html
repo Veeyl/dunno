@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Bringova — Modern Point of Sale & Order Management" />
+    <meta name="theme-color" content="#E14D43" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22 fill=%22none%22><rect width=%2232%22 height=%2232%22 rx=%2210%22 fill=%22%23E14D43%22/><path d=%22M11 16.5a5 5 0 1 0 10 0 5 5 0 0 0-10 0Z%22 stroke=%22white%22 stroke-width=%222.5%22/><path d=%22M13 7.5 14.5 11M16 6.5v4.5M19 7.5 17.5 11%22 stroke=%22white%22 stroke-width=%222.2%22 stroke-linecap=%22round%22/></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>bringova · POS</title>
+    <script>
+      try {
+        const saved = JSON.parse(localStorage.getItem('pos.settings') || '{}')
+        const dark = saved.darkMode ?? false
+        if (dark) document.documentElement.classList.add('dark')
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
